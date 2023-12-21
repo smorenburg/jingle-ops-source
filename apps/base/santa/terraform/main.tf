@@ -9,7 +9,7 @@ terraform {
 provider "azurerm" {
   subscription_id      = "ae9db8ac-2682-4a98-ad36-7d13b2bd5a24"
   tenant_id            = "7ddc4c97-c5a0-4a29-ac83-59be0f280518"
-  client_id            = "a28e49e2-df12-4271-b00b-529acb7a5401"
+  client_id            = "223b377c-bb9b-499c-9c9e-106b95d7c628"
   use_oidc             = true
   oidc_token_file_path = "/var/run/secrets/azure/tokens/azure-identity-token"
 

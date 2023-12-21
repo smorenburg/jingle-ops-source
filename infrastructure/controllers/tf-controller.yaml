@@ -55,4 +55,4 @@ spec:
         maxMessageSize: 30
       serviceAccount:
         annotations:
-          azure.workload.identity/client-id: a28e49e2-df12-4271-b00b-529acb7a5401
+          azure.workload.identity/client-id: 223b377c-bb9b-499c-9c9e-106b95d7c628
