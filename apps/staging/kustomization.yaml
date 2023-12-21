@@ -5,4 +5,5 @@ resources:
 patches:
   - path: santa.yaml
     target:
+      kind: Terraform
       name: santa
