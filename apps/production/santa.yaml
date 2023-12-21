@@ -2,7 +2,7 @@
 apiVersion: infra.contrib.fluxcd.io/v1alpha2
 kind: Terraform
 metadata:
-  name: santa
+  name: santa1
   namespace: flux-system
 spec:
   vars:

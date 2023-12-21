@@ -14,4 +14,3 @@ spec:
   path: ./infrastructure/production
   prune: true
   wait: true
-
