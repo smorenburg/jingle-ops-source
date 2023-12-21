@@ -8,6 +8,14 @@ spec:
   path: ./apps/base/santa/terraform
   interval: 1m
   approvePlan: auto
+  backendConfig:
+    customConfiguration: |
+      backend "azurerm" {
+        storage_account_name = "stjingle040158"
+        resource_group_name  = "rg-tfstate-jingle-neu"
+        container_name       = "tfstate"
+        key                  = "santa.production.northeurope.tfstate"
+      }
   sourceRef:
     kind: GitRepository
     name: flux-system
