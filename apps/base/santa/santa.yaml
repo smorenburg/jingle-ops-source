@@ -2,10 +2,10 @@
 apiVersion: infra.contrib.fluxcd.io/v1alpha2
 kind: Terraform
 metadata:
-  name: hello
+  name: santa
   namespace: flux-system
 spec:
-  path: ./apps/hello/terraform
+  path: ./apps/base/santa/terraform
   interval: 1m
   approvePlan: auto
   sourceRef:
