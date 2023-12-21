@@ -16,3 +16,6 @@ spec:
     metadata:
       labels:
         azure.workload.identity/use: "true"
+  vars:
+    - name: app
+      value: santa
