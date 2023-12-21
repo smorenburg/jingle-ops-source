@@ -4,6 +4,13 @@ terraform {
       version = ">= 3.84"
     }
   }
+
+  backend "azurerm" {
+    storage_account_name = "stjingle040158"
+    resource_group_name  = "rg-tfstate-jinge-neu"
+    container_name       = "tfstate"
+    key                  = "santa.production.northeurope.tfstate"
+  }
 }
 
 provider "azurerm" {
