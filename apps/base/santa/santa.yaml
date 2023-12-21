@@ -5,21 +5,9 @@ metadata:
   name: santa
   namespace: flux-system
 spec:
-  tfstate:
-    forceUnlock: auto
   path: ./apps/base/santa/terraform
   interval: 1m
   approvePlan: auto
-  destroy: true
-  backendConfig:
-    customConfiguration: |
-      backend "azurerm" {
-        resource_group_name  = "rg-tfstate-jingle-neu"
-        storage_account_name = "stjingle040158"
-        container_name       = "tfstate"
-        key                  = "santa.production.northeurope.tfstate"
-        use_oidc             = true
-      }
   destroyResourcesOnDeletion: true
   sourceRef:
     kind: GitRepository
