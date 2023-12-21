@@ -5,6 +5,8 @@ metadata:
   name: santa
   namespace: flux-system
 spec:
+  tfstate:
+    forceUnlock: auto
   path: ./apps/base/santa/terraform
   interval: 1m
   approvePlan: auto
