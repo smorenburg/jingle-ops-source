@@ -1,0 +1,11 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: tf-controller
+spec:
+  values:
+    runner:
+      serviceAccount:
+        annotations:
+          azure.workload.identity/client-id: 223b377c-bb9b-499c-9c9e-106b95d7c628

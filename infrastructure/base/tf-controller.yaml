@@ -53,6 +53,3 @@ spec:
         tag: v0.16.0-rc.3
       grpc:
         maxMessageSize: 30
-      serviceAccount:
-        annotations:
-          azure.workload.identity/client-id: 223b377c-bb9b-499c-9c9e-106b95d7c628
