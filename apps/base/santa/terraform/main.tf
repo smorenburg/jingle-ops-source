@@ -30,7 +30,7 @@ locals {
   environment_abbreviation = try(var.environment_abbreviation[var.environment], "na")
 
   # Construct the name suffix.
-  suffix = "${local.app}-${local.environment_abbreviation}-${local.location_abbreviation}"
+  suffix = "${var.app}-${local.environment_abbreviation}-${local.location_abbreviation}"
 }
 
 # Create the resource group.
