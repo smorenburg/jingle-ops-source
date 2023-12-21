@@ -11,6 +11,7 @@ spec:
   backendConfig:
     customConfiguration: |
       backend "azurerm" {
+        tenant_id            = "7ddc4c97-c5a0-4a29-ac83-59be0f280518"
         subscription_id      = "ae9db8ac-2682-4a98-ad36-7d13b2bd5a24"
         storage_account_name = "stjingle040158"
         resource_group_name  = "rg-tfstate-jingle-neu"
