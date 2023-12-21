@@ -5,8 +5,6 @@ metadata:
   name: santa
   namespace: flux-system
 spec:
-  runnerPodTemplate:
-    spec:
-      env:
-        - name: TF_VAR_environment
-          value: prod
+  vars:
+    - name: environment
+      value: prod
