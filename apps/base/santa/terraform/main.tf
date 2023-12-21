@@ -7,7 +7,7 @@ terraform {
 
   backend "azurerm" {
     storage_account_name = "stjingle040158"
-    resource_group_name  = "rg-tfstate-jinge-neu"
+    resource_group_name  = "rg-tfstate-jingle-neu"
     container_name       = "tfstate"
     key                  = "santa.production.northeurope.tfstate"
   }
