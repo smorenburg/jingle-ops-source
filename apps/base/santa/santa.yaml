@@ -20,6 +20,7 @@ spec:
         key                  = "santa.production.northeurope.tfstate"
         use_oidc             = true
       }
+  destroyResourcesOnDeletion: true
   sourceRef:
     kind: GitRepository
     name: flux-system
