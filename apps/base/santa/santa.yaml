@@ -8,6 +8,7 @@ spec:
   path: ./apps/base/santa/terraform
   interval: 1m
   approvePlan: auto
+  destroy: true
   backendConfig:
     customConfiguration: |
       backend "azurerm" {
