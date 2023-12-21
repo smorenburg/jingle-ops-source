@@ -1,11 +1,11 @@
 variable "app" {
-  description = "Required. The name of the application."
+  description = "Optional. The name of the application."
   type        = string
   default     = "santa"
 }
 
 variable "location" {
-  description = "Required. The location (region) for the resources."
+  description = "Optional. The location (region) for the resources."
   type        = string
   default     = "northeurope"
 }

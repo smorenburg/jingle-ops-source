@@ -23,9 +23,6 @@ provider "azurerm" {
 data "azurerm_client_config" "current" {}
 
 locals {
-  # Set the application name
-  app = "santa"
-
   # Lookup and set the location abbreviation, defaults to na (not available).
   location_abbreviation = try(var.location_abbreviation[var.location], "na")
 
