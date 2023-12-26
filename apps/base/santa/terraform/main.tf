@@ -9,8 +9,6 @@ terraform {
   }
 }
 
-provider "kubernetes" {}
-
 provider "azurerm" {
   features {
     resource_group {
