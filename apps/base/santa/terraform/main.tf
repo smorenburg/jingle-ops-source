@@ -51,7 +51,8 @@ resource "kubernetes_namespace" "default" {
 # Create the Kubernetes deployment.
 resource "kubernetes_deployment" "default" {
   metadata {
-    name = "santa"
+    name      = "santa"
+    namespace = kubernetes_namespace.default
     labels = {
       app = "santa"
     }
@@ -110,7 +111,8 @@ resource "kubernetes_deployment" "default" {
 # Create the Kubernetes service.
 resource "kubernetes_service" "default" {
   metadata {
-    name = "santa"
+    name      = "santa"
+    namespace = kubernetes_namespace.default
     labels = {
       app = "santa"
     }
