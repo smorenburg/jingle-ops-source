@@ -3,6 +3,9 @@ terraform {
     azurerm = {
       version = ">= 3.84"
     }
+    random = {
+      version = ">= 3.6"
+    }
     kubernetes = {
       version = ">= 2.24"
     }
@@ -30,10 +33,53 @@ locals {
   suffix = "${var.app}-${local.environment_abbreviation}-${local.location_abbreviation}"
 }
 
+# Generate a random suffix for the CosmosDB account.
+resource "random_id" "cosmosdb" {
+  byte_length = 3
+}
+
 # Create the resource group.
 resource "azurerm_resource_group" "default" {
   name     = "rg-${local.suffix}"
   location = var.location
+}
+
+# Create the CosmosDB account.
+resource "azurerm_cosmosdb_account" "default" {
+  name                = "cosmos-${var.app}-${local.environment_abbreviation}-${random_id.cosmosdb.hex}"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.default.name
+  offer_type          = "Standard"
+  kind                = "MongoDB"
+
+  enable_automatic_failover = true
+
+  capabilities {
+    name = "EnableAggregationPipeline"
+  }
+
+  capabilities {
+    name = "mongoEnableDocLevelTTL"
+  }
+
+  capabilities {
+    name = "MongoDBv3.4"
+  }
+
+  capabilities {
+    name = "EnableMongo"
+  }
+
+  consistency_policy {
+    consistency_level       = "BoundedStaleness"
+    max_interval_in_seconds = 300
+    max_staleness_prefix    = 100000
+  }
+
+  geo_location {
+    location          = "westeurope"
+    failover_priority = 0
+  }
 }
 
 # Create the Kubernetes namespace.
