@@ -5,4 +5,5 @@ resources:
 patches:
   - path: tf-controller.yaml
     target:
+      kind: HelmRelease
       name: tf-controller
