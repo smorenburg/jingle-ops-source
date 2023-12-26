@@ -52,7 +52,7 @@ resource "kubernetes_namespace" "default" {
 resource "kubernetes_deployment" "default" {
   metadata {
     name      = "santa"
-    namespace = kubernetes_namespace.default.metadata.name
+    namespace = kubernetes_namespace.default.metadata[0].name
     labels = {
       app = "santa"
     }
@@ -113,7 +113,7 @@ resource "kubernetes_deployment" "default" {
 resource "kubernetes_service" "default" {
   metadata {
     name      = "santa"
-    namespace = kubernetes_namespace.default.metadata.name
+    namespace = kubernetes_namespace.default.metadata[0].name
     labels = {
       app = "santa"
     }
