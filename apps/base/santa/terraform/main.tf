@@ -207,7 +207,7 @@ resource "kubernetes_service" "default" {
 }
 
 # Create the ingress.
-resource "kubernetes_ingress" "default" {
+resource "kubernetes_ingress_v1" "default" {
   metadata {
     name      = "santa"
     namespace = kubernetes_namespace.default.metadata[0].name
