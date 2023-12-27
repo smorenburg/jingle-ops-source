@@ -91,145 +91,145 @@ resource "azurerm_cosmosdb_sql_container" "default" {
   }
 }
 
-# Create the Kubernetes namespace.
-resource "kubernetes_namespace_v1" "default" {
-  metadata {
-    name   = var.app
-    labels = {
-      app = var.app
-    }
-  }
-}
-
-# Create the Kubernetes deployment.
-resource "kubernetes_deployment_v1" "default" {
-  metadata {
-    name      = var.app
-    namespace = kubernetes_namespace_v1.default.metadata[0].name
-    labels    = {
-      app = var.app
-    }
-  }
-
-  spec {
-    replicas = 1
-
-    selector {
-      match_labels = {
-        app = var.app
-      }
-    }
-
-    template {
-      metadata {
-        labels = {
-          app = var.app
-        }
-      }
-
-      spec {
-        container {
-          image = var.image
-          name  = var.app
-
-          port {
-            container_port = 80
-            protocol       = "TCP"
-          }
-
-          env {
-            name  = "NEXT_PUBLIC_COSMOS_DB_ENDPOINT"
-            value = azurerm_cosmosdb_account.default.endpoint
-          }
-
-          env {
-            name  = "NEXT_PUBLIC_COSMOS_DB_KEY"
-            value = azurerm_cosmosdb_account.default.primary_key
-          }
-
-          env {
-            name  = "NEXT_PUBLIC_COSMOS_DB_CONTAINER_ID"
-            value = azurerm_cosmosdb_sql_database.default.id
-          }
-
-          env {
-            name  = "NEXT_PUBLIC_COSMOS_DB_DATABASE_ID"
-            value = azurerm_cosmosdb_sql_container.default.id
-          }
-
-          resources {
-            limits = {
-              cpu    = "0.5"
-              memory = "512Mi"
-            }
-            requests = {
-              cpu    = "250m"
-              memory = "50Mi"
-            }
-          }
-
-          liveness_probe {
-            http_get {
-              path = "/"
-              port = 3000
-            }
-
-            initial_delay_seconds = 10
-          }
-        }
-      }
-    }
-  }
-}
-
-# Create the Kubernetes service.
-resource "kubernetes_service_v1" "default" {
-  metadata {
-    name      = var.app
-    namespace = kubernetes_namespace_v1.default.metadata[0].name
-    labels    = {
-      app = var.app
-    }
-  }
-
-  spec {
-    selector = {
-      app = var.app
-    }
-
-    port {
-      port        = 80
-      target_port = 80
-    }
-  }
-}
-
-# Create the ingress.
-resource "kubernetes_ingress_v1" "default" {
-  metadata {
-    name      = var.app
-    namespace = kubernetes_namespace_v1.default.metadata[0].name
-    labels    = {
-      app = var.app
-    }
-  }
-
-  spec {
-    rule {
-      http {
-        path {
-          backend {
-            service {
-              name = var.app
-              port {
-                number = 3000
-              }
-            }
-          }
-
-          path = "/*"
-        }
-      }
-    }
-  }
-}
+## Create the Kubernetes namespace.
+#resource "kubernetes_namespace_v1" "default" {
+#  metadata {
+#    name   = var.app
+#    labels = {
+#      app = var.app
+#    }
+#  }
+#}
+#
+## Create the Kubernetes deployment.
+#resource "kubernetes_deployment_v1" "default" {
+#  metadata {
+#    name      = var.app
+#    namespace = kubernetes_namespace_v1.default.metadata[0].name
+#    labels    = {
+#      app = var.app
+#    }
+#  }
+#
+#  spec {
+#    replicas = 1
+#
+#    selector {
+#      match_labels = {
+#        app = var.app
+#      }
+#    }
+#
+#    template {
+#      metadata {
+#        labels = {
+#          app = var.app
+#        }
+#      }
+#
+#      spec {
+#        container {
+#          image = var.image
+#          name  = var.app
+#
+#          port {
+#            container_port = 80
+#            protocol       = "TCP"
+#          }
+#
+#          env {
+#            name  = "NEXT_PUBLIC_COSMOS_DB_ENDPOINT"
+#            value = azurerm_cosmosdb_account.default.endpoint
+#          }
+#
+#          env {
+#            name  = "NEXT_PUBLIC_COSMOS_DB_KEY"
+#            value = azurerm_cosmosdb_account.default.primary_key
+#          }
+#
+#          env {
+#            name  = "NEXT_PUBLIC_COSMOS_DB_CONTAINER_ID"
+#            value = azurerm_cosmosdb_sql_database.default.id
+#          }
+#
+#          env {
+#            name  = "NEXT_PUBLIC_COSMOS_DB_DATABASE_ID"
+#            value = azurerm_cosmosdb_sql_container.default.id
+#          }
+#
+#          resources {
+#            limits = {
+#              cpu    = "0.5"
+#              memory = "512Mi"
+#            }
+#            requests = {
+#              cpu    = "250m"
+#              memory = "50Mi"
+#            }
+#          }
+#
+#          liveness_probe {
+#            http_get {
+#              path = "/"
+#              port = 3000
+#            }
+#
+#            initial_delay_seconds = 10
+#          }
+#        }
+#      }
+#    }
+#  }
+#}
+#
+## Create the Kubernetes service.
+#resource "kubernetes_service_v1" "default" {
+#  metadata {
+#    name      = var.app
+#    namespace = kubernetes_namespace_v1.default.metadata[0].name
+#    labels    = {
+#      app = var.app
+#    }
+#  }
+#
+#  spec {
+#    selector = {
+#      app = var.app
+#    }
+#
+#    port {
+#      port        = 80
+#      target_port = 80
+#    }
+#  }
+#}
+#
+## Create the ingress.
+#resource "kubernetes_ingress_v1" "default" {
+#  metadata {
+#    name      = var.app
+#    namespace = kubernetes_namespace_v1.default.metadata[0].name
+#    labels    = {
+#      app = var.app
+#    }
+#  }
+#
+#  spec {
+#    rule {
+#      http {
+#        path {
+#          backend {
+#            service {
+#              name = var.app
+#              port {
+#                number = 3000
+#              }
+#            }
+#          }
+#
+#          path = "/*"
+#        }
+#      }
+#    }
+#  }
+#}
