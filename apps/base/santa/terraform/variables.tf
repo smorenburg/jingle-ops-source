@@ -42,3 +42,8 @@ variable "image" {
   description = "Required. The image for the container."
   type        = string
 }
+
+variable "ingress_rule_host" {
+  description = "Required. The host for the ingress rule."
+  type        = string
+}

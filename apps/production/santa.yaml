@@ -10,6 +10,8 @@ spec:
       value: production
     - name: image
       value: crjingle7d687c.azurecr.io/santa:latest
+    - name: ingress_rule_host
+      value: santa.20.123.4.196.nip.io
   runnerPodTemplate:
     spec:
       env:

@@ -10,6 +10,8 @@ spec:
       value: production
     - name: image
       value: mcr.microsoft.com/azuredocs/azure-vote-front:v1
+    - name: ingress_rule_host
+      value: vote.20.123.4.196.nip.io
   runnerPodTemplate:
     spec:
       env:
