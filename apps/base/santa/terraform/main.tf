@@ -198,7 +198,7 @@ resource "kubernetes_service_v1" "default" {
     }
 
     port {
-      port        = 80
+      port        = 3000
       target_port = 3000
     }
   }
@@ -222,7 +222,7 @@ resource "kubernetes_ingress_v1" "default" {
             service {
               name = var.app
               port {
-                number = 80
+                number = 3000
               }
             }
           }
