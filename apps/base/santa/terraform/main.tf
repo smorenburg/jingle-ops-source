@@ -201,38 +201,40 @@ resource "kubernetes_service_v1" "default" {
       port        = 80
       target_port = 3000
     }
+
+    type = "LoadBalancer"
   }
 }
 
 # Create the ingress.
-resource "kubernetes_ingress_v1" "default" {
-  metadata {
-    name      = var.app
-    namespace = kubernetes_namespace_v1.default.metadata[0].name
-    labels    = {
-      app = var.app
-    }
-  }
-
-  spec {
-    ingress_class_name = "nginx"
-
-    rule {
-      http {
-        path {
-          backend {
-            service {
-              name = var.app
-              port {
-                number = 80
-              }
-            }
-          }
-
-          path      = "/"
-          path_type = "Prefix"
-        }
-      }
-    }
-  }
-}
+#resource "kubernetes_ingress_v1" "default" {
+#  metadata {
+#    name      = var.app
+#    namespace = kubernetes_namespace_v1.default.metadata[0].name
+#    labels    = {
+#      app = var.app
+#    }
+#  }
+#
+#  spec {
+#    ingress_class_name = "nginx"
+#
+#    rule {
+#      http {
+#        path {
+#          backend {
+#            service {
+#              name = var.app
+#              port {
+#                number = 80
+#              }
+#            }
+#          }
+#
+#          path      = "/"
+#          path_type = "Prefix"
+#        }
+#      }
+#    }
+#  }
+#}
