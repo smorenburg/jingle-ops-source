@@ -8,7 +8,7 @@ spec:
   path: ./apps/base/santa/terraform
   interval: 1m
   approvePlan: auto
-  destroyResourcesOnDeletion: "true"
+  destroyResourcesOnDeletion: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -17,5 +17,5 @@ spec:
       labels:
         azure.workload.identity/use: "true"
   tfstate:
-    forceUnlock: "yes"
+    forceUnlock: yes
     lockIdentifier: f0b67037-114f-f5f1-cac1-a67575288ccf
