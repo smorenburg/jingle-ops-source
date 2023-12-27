@@ -212,9 +212,6 @@ resource "kubernetes_ingress_v1" "default" {
     labels    = {
       app = var.app
     }
-    annotations = {
-      nginx.ingress.kubernetes.io/rewrite-target = "/"
-    }
   }
 
   spec {
