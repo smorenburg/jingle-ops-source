@@ -129,9 +129,8 @@ resource "kubernetes_deployment" "default" {
 
       spec {
         container {
-          image             = "crjingle7d687c.azurecr.io/ftc2023:latest"
-          name              = "santa"
-          image_pull_policy = "Always"
+          image = "crjingle7d687c.azurecr.io/ftc2023:latest"
+          name  = "santa"
 
           port {
             container_port = 3000

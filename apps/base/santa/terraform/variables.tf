@@ -37,3 +37,9 @@ variable "environment_abbreviation" {
     "production"  = "prod"
   }
 }
+
+variable "image" {
+  description = "Optional. The image for the container."
+  type        = string
+  default     = "crjingle7d687c.azurecr.io/ftc2023:latest"
+}
