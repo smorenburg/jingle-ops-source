@@ -16,6 +16,3 @@ spec:
     metadata:
       labels:
         azure.workload.identity/use: "true"
-  tfstate:
-    forceUnlock: yes
-    lockIdentifier: f0b67037-114f-f5f1-cac1-a67575288ccf

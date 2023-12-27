@@ -222,12 +222,13 @@ resource "kubernetes_ingress_v1" "default" {
             service {
               name = var.app
               port {
-                number = 3000
+                number = 80
               }
             }
           }
 
-          path = "/*"
+          path = "/"
+          path_type = "Prefix"
         }
       }
     }
