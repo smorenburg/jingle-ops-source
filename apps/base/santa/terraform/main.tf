@@ -133,7 +133,7 @@ resource "kubernetes_deployment_v1" "default" {
           name  = var.app
 
           port {
-            container_port = 3000
+            container_port = 80
             protocol       = "TCP"
           }
 
@@ -199,7 +199,7 @@ resource "kubernetes_service_v1" "default" {
 
     port {
       port        = 80
-      target_port = 3000
+      target_port = 80
     }
   }
 }
