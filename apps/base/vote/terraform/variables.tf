@@ -39,7 +39,6 @@ variable "environment_abbreviation" {
 }
 
 variable "image" {
-  description = "Optional. The image for the container."
+  description = "Required. The image for the container."
   type        = string
-  default     = "mcr.microsoft.com/azuredocs/azure-vote-front:v1"
 }
