@@ -198,10 +198,41 @@ resource "kubernetes_service_v1" "default" {
     }
 
     port {
-      port        = 80
+      port        = 3000
       target_port = 3000
     }
+  }
+}
 
-    type = "LoadBalancer"
+# Create the ingress.
+resource "kubernetes_ingress_v1" "default" {
+  metadata {
+    name      = var.app
+    namespace = kubernetes_namespace_v1.default.metadata[0].name
+    labels    = {
+      app = var.app
+    }
+  }
+
+  spec {
+    rule {
+      host = "4.207.71.108.nip.io"
+
+      http {
+        path {
+          backend {
+            service {
+              name = var.app
+              port {
+                number = 3000
+              }
+            }
+          }
+
+          path      = "/"
+          path_type = "Prefix"
+        }
+      }
+    }
   }
 }
