@@ -201,8 +201,6 @@ resource "kubernetes_service_v1" "default" {
       port        = 80
       target_port = 3000
     }
-
-    type = "ClusterIP"
   }
 }
 
