@@ -133,7 +133,7 @@ resource "kubernetes_deployment_v1" "default" {
           name  = var.app
 
           port {
-            container_port = 80
+            container_port = 3000
             protocol       = "TCP"
           }
 
@@ -171,7 +171,7 @@ resource "kubernetes_deployment_v1" "default" {
           liveness_probe {
             http_get {
               path = "/"
-              port = 80
+              port = 3000
             }
 
             initial_delay_seconds = 10
@@ -199,7 +199,7 @@ resource "kubernetes_service_v1" "default" {
 
     port {
       port        = 80
-      target_port = 80
+      target_port = 3000
     }
   }
 }

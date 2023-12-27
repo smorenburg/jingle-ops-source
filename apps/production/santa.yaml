@@ -9,7 +9,7 @@ spec:
     - name: environment
       value: production
     - name: image
-      value: nginx:latest
+      value: crjingle7d687c.azurecr.io/santa:latest
   runnerPodTemplate:
     spec:
       env:
