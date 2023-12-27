@@ -222,7 +222,7 @@ resource "kubernetes_ingress_v1" "default" {
         path {
           backend {
             service {
-              name = "santa"
+              name = var.app
               port {
                 number = 3000
               }
