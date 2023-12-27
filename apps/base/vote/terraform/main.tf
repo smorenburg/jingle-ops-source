@@ -46,7 +46,7 @@ resource "azurerm_resource_group" "default" {
 
 # Create the Azure Cache for Redis.
 resource "azurerm_redis_cache" "default" {
-  name                = "redis-${var.app}-${local.environment_abbreviation}-${random_id.cosmosdb.hex}"
+  name                = "redis-${var.app}-${local.environment_abbreviation}-${random_id.redis.hex}"
   location            = var.location
   resource_group_name = azurerm_resource_group.default.name
   capacity            = 2
