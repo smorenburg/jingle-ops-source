@@ -215,8 +215,6 @@ resource "kubernetes_ingress_v1" "default" {
   }
 
   spec {
-    ingress_class_name = "nginx"
-
     rule {
       http {
         path {
