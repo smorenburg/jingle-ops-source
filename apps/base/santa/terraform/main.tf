@@ -44,13 +44,12 @@ resource "azurerm_resource_group" "default" {
   location = var.location
 }
 
-# Create the CosmosDB account.
+# Create the CosmosDB account, database, and container.
 resource "azurerm_cosmosdb_account" "default" {
-  name                = "cosmos-${var.app}-${local.environment_abbreviation}-${random_id.cosmosdb.hex}"
-  location            = var.location
-  resource_group_name = azurerm_resource_group.default.name
-  offer_type          = "Standard"
-
+  name                      = "cosmos-${var.app}-${local.environment_abbreviation}-${random_id.cosmosdb.hex}"
+  location                  = var.location
+  resource_group_name       = azurerm_resource_group.default.name
+  offer_type                = "Standard"
   enable_automatic_failover = true
 
   consistency_policy {
@@ -62,6 +61,28 @@ resource "azurerm_cosmosdb_account" "default" {
   geo_location {
     location          = "westeurope"
     failover_priority = 0
+  }
+}
+
+resource "azurerm_cosmosdb_sql_database" "default" {
+  name                = "ftc23"
+  resource_group_name = azurerm_resource_group.default.name
+  account_name        = azurerm_cosmosdb_account.default.name
+
+  autoscale_settings {
+    max_throughput = "1000"
+  }
+}
+
+resource "azurerm_cosmosdb_sql_container" "default" {
+  name                = "persons"
+  resource_group_name = azurerm_resource_group.default.name
+  account_name        = azurerm_cosmosdb_account.default.name
+  database_name       = azurerm_cosmosdb_sql_database.default.name
+  partition_key_path  = "/definition/id"
+
+  autoscale_settings {
+    max_throughput = "1000"
   }
 }
 
