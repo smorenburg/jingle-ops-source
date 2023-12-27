@@ -198,39 +198,10 @@ resource "kubernetes_service_v1" "default" {
     }
 
     port {
-      port        = 3000
+      port        = 80
       target_port = 3000
     }
-  }
-}
 
-# Create the ingress.
-resource "kubernetes_ingress_v1" "default" {
-  metadata {
-    name      = var.app
-    namespace = kubernetes_namespace_v1.default.metadata[0].name
-    labels    = {
-      app = var.app
-    }
-  }
-
-  spec {
-    rule {
-      http {
-        path {
-          backend {
-            service {
-              name = var.app
-              port {
-                number = 3000
-              }
-            }
-          }
-
-          path      = "/"
-          path_type = "Prefix"
-        }
-      }
-    }
+    type = "LoadBalancer"
   }
 }
