@@ -37,7 +37,6 @@ spec:
         annotations:
           service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: /healthz
           service.beta.kubernetes.io/azure-load-balancer-resource-group: rg-jingle-neu
-          service.beta.kubernetes.io/azure-dns-label-name: jingle-prod-neu.northeurope.cloudapp.azure.com
       replicaCount: 3
       ingressClassResource:
         default: true
