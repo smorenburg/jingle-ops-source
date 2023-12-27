@@ -171,7 +171,7 @@ resource "kubernetes_deployment_v1" "default" {
           liveness_probe {
             http_get {
               path = "/"
-              port = 3000
+              port = 80
             }
 
             initial_delay_seconds = 10
