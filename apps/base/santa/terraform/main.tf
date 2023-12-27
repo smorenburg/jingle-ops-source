@@ -216,6 +216,8 @@ resource "kubernetes_ingress_v1" "default" {
 
   spec {
     rule {
+      host = "santa.4.207.71.108.nip.io"
+
       http {
         path {
           backend {
