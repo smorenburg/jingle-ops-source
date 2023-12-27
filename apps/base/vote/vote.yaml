@@ -5,7 +5,7 @@ metadata:
   name: vote
   namespace: flux-system
 spec:
-  path: ./apps/base/santa/terraform
+  path: ./apps/base/vote/terraform
   interval: 1m
   approvePlan: auto
   destroyResourcesOnDeletion: true
