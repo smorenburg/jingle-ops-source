@@ -7,3 +7,7 @@ patches:
     target:
       kind: HelmRelease
       name: tf-controller
+  - path: ingress-nginx.yaml
+    target:
+      kind: HelmRelease
+      name: ingress-nginx

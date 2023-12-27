@@ -33,7 +33,6 @@ spec:
     controller:
       service:
         type: LoadBalancer
-        loadBalancerIP: 20.123.4.196
         annotations:
           service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: /healthz
           service.beta.kubernetes.io/azure-load-balancer-resource-group: rg-jingle-neu
