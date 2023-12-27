@@ -133,7 +133,7 @@ resource "kubernetes_deployment" "default" {
           name  = "santa"
 
           port {
-            container_port = 80
+            container_port = 3000
             protocol       = "TCP"
           }
 
@@ -151,7 +151,7 @@ resource "kubernetes_deployment" "default" {
           liveness_probe {
             http_get {
               path = "/"
-              port = 80
+              port = 3000
             }
 
             initial_delay_seconds = 3
@@ -178,7 +178,7 @@ resource "kubernetes_service" "default" {
 
     port {
       port        = 80
-      target_port = 80
+      target_port = 3000
     }
 
     type = "LoadBalancer"
