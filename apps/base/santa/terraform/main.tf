@@ -94,7 +94,7 @@ resource "azurerm_cosmosdb_sql_container" "default" {
 # Create the Kubernetes namespace.
 resource "kubernetes_namespace" "default" {
   metadata {
-    name = "santa"
+    name   = "santa"
     labels = {
       app = "santa"
     }
@@ -106,7 +106,7 @@ resource "kubernetes_deployment" "default" {
   metadata {
     name      = "santa"
     namespace = kubernetes_namespace.default.metadata[0].name
-    labels = {
+    labels    = {
       app = "santa"
     }
   }
@@ -187,7 +187,7 @@ resource "kubernetes_service" "default" {
   metadata {
     name      = "santa"
     namespace = kubernetes_namespace.default.metadata[0].name
-    labels = {
+    labels    = {
       app = "santa"
     }
   }
