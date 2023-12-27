@@ -137,6 +137,26 @@ resource "kubernetes_deployment" "default" {
             protocol       = "TCP"
           }
 
+          env {
+            name  = "NEXT_PUBLIC_COSMOS_DB_ENDPOINT"
+            value = azurerm_cosmosdb_account.default.endpoint
+          }
+
+          env {
+            name  = "NEXT_PUBLIC_COSMOS_DB_KEY"
+            value = azurerm_cosmosdb_account.default.primary_key
+          }
+
+          env {
+            name  = "NEXT_PUBLIC_COSMOS_DB_CONTAINER_ID"
+            value = azurerm_cosmosdb_sql_database.default.id
+          }
+
+          env {
+            name  = "NEXT_PUBLIC_COSMOS_DB_DATABASE_ID"
+            value = azurerm_cosmosdb_sql_container.default.id
+          }
+
           resources {
             limits = {
               cpu    = "0.5"
