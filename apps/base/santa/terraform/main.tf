@@ -217,17 +217,16 @@ resource "kubernetes_ingress_v1" "default" {
   }
 
   spec {
-    backend {
-      service_name = "santa"
-      service_port = 3000
-    }
-
     rule {
       http {
         path {
           backend {
-            service_name = "myapp-1"
-            service_port = 8080
+            service {
+              name = "santa"
+              port {
+                number = 3000
+              }
+            }
           }
 
           path = "/*"
