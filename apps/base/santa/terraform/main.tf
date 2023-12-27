@@ -216,8 +216,6 @@ resource "kubernetes_ingress_v1" "default" {
 
   spec {
     rule {
-      host = "santa.robino.io"
-
       http {
         path {
           backend {
