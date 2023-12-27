@@ -191,6 +191,7 @@ resource "kubernetes_service" "default" {
       app = "santa"
     }
   }
+
   spec {
     selector = {
       app = "santa"
@@ -201,6 +202,37 @@ resource "kubernetes_service" "default" {
       target_port = 3000
     }
 
-    type = "LoadBalancer"
+    type = "ClusterIP"
+  }
+}
+
+# Create the ingress.
+resource "kubernetes_ingress" "default" {
+  metadata {
+    name      = "santa"
+    namespace = kubernetes_namespace.default.metadata[0].name
+    labels    = {
+      app = "santa"
+    }
+  }
+
+  spec {
+    backend {
+      service_name = "santa"
+      service_port = 3000
+    }
+
+    rule {
+      http {
+        path {
+          backend {
+            service_name = "myapp-1"
+            service_port = 8080
+          }
+
+          path = "/*"
+        }
+      }
+    }
   }
 }
