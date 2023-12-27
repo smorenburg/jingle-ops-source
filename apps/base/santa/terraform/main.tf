@@ -92,22 +92,22 @@ resource "azurerm_cosmosdb_sql_container" "default" {
 }
 
 # Create the Kubernetes namespace.
-resource "kubernetes_namespace" "default" {
+resource "kubernetes_namespace_v1" "default" {
   metadata {
-    name   = "santa"
+    name   = var.app
     labels = {
-      app = "santa"
+      app = var.app
     }
   }
 }
 
 # Create the Kubernetes deployment.
-resource "kubernetes_deployment" "default" {
+resource "kubernetes_deployment_v1" "default" {
   metadata {
-    name      = "santa"
-    namespace = kubernetes_namespace.default.metadata[0].name
+    name      = var.app
+    namespace = kubernetes_namespace_v1.default.metadata[0].name
     labels    = {
-      app = "santa"
+      app = var.app
     }
   }
 
@@ -116,21 +116,21 @@ resource "kubernetes_deployment" "default" {
 
     selector {
       match_labels = {
-        app = "santa"
+        app = var.app
       }
     }
 
     template {
       metadata {
         labels = {
-          app = "santa"
+          app = var.app
         }
       }
 
       spec {
         container {
-          image = "crjingle7d687c.azurecr.io/ftc2023:latest"
-          name  = "santa"
+          image = var.image
+          name  = var.app
 
           port {
             container_port = 3000
@@ -174,7 +174,7 @@ resource "kubernetes_deployment" "default" {
               port = 3000
             }
 
-            initial_delay_seconds = 3
+            initial_delay_seconds = 10
           }
         }
       }
@@ -183,18 +183,18 @@ resource "kubernetes_deployment" "default" {
 }
 
 # Create the Kubernetes service.
-resource "kubernetes_service" "default" {
+resource "kubernetes_service_v1" "default" {
   metadata {
-    name      = "santa"
-    namespace = kubernetes_namespace.default.metadata[0].name
+    name      = var.app
+    namespace = kubernetes_namespace_v1.default.metadata[0].name
     labels    = {
-      app = "santa"
+      app = var.app
     }
   }
 
   spec {
     selector = {
-      app = "santa"
+      app = var.app
     }
 
     port {
@@ -209,10 +209,10 @@ resource "kubernetes_service" "default" {
 # Create the ingress.
 resource "kubernetes_ingress_v1" "default" {
   metadata {
-    name      = "santa"
-    namespace = kubernetes_namespace.default.metadata[0].name
+    name      = var.app
+    namespace = kubernetes_namespace_v1.default.metadata[0].name
     labels    = {
-      app = "santa"
+      app = var.app
     }
   }
 
