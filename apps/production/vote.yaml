@@ -1,0 +1,25 @@
+---
+apiVersion: infra.contrib.fluxcd.io/v1alpha2
+kind: Terraform
+metadata:
+  name: vote
+  namespace: flux-system
+spec:
+  vars:
+    - name: environment
+      value: production
+    - name: image
+      value: mcr.microsoft.com/azuredocs/azure-vote-front:v1
+  runnerPodTemplate:
+    spec:
+      env:
+        - name: ARM_TENANT_ID
+          value: 7ddc4c97-c5a0-4a29-ac83-59be0f280518
+        - name: ARM_SUBSCRIPTION_ID
+          value: ae9db8ac-2682-4a98-ad36-7d13b2bd5a24
+        - name: ARM_CLIENT_ID
+          value: 35822cf7-9f29-4050-b495-76d710a6f5a3
+        - name: ARM_USE_OIDC
+          value: "true"
+        - name: ARM_OIDC_TOKEN_FILE_PATH
+          value: /var/run/secrets/azure/tokens/azure-identity-token
