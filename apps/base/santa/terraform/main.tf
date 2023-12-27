@@ -215,6 +215,8 @@ resource "kubernetes_ingress_v1" "default" {
   }
 
   spec {
+    ingress_class_name = "nginx"
+
     rule {
       http {
         path {
@@ -227,7 +229,7 @@ resource "kubernetes_ingress_v1" "default" {
             }
           }
 
-          path = "/"
+          path      = "/"
           path_type = "Prefix"
         }
       }
