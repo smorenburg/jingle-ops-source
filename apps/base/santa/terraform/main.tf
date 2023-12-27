@@ -59,8 +59,13 @@ resource "azurerm_cosmosdb_account" "default" {
   }
 
   geo_location {
-    location          = "westeurope"
+    location          = "northeurope"
     failover_priority = 0
+  }
+
+  geo_location {
+    location          = "westeurope"
+    failover_priority = 1
   }
 }
 
@@ -124,7 +129,7 @@ resource "kubernetes_deployment" "default" {
 
       spec {
         container {
-          image = "nginx:1.21.6"
+          image = "crjingle7d687c.azurecr.io/ftc2023:latest"
           name  = "santa"
 
           port {
