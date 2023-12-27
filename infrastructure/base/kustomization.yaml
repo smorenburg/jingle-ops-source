@@ -4,5 +4,5 @@ resources:
   - weave-gitops.yaml
   - tf-controller.yaml
   - cert-manager.yaml
-  - ingress-nginx.yaml
+#  - ingress-nginx.yaml
   - network-policies.yaml
