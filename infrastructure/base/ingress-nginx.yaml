@@ -33,8 +33,11 @@ spec:
     controller:
       service:
         type: LoadBalancer
+        loadBalancerIP: 20.234.11.50
         annotations:
           service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: /healthz
+          service.beta.kubernetes.io/azure-load-balancer-resource-group: rg-jingle-neu
+          service.beta.kubernetes.io/azure-dns-label-name: nginx-jingle-neu.northeurope.cloudapp.azure.com
       replicaCount: 3
       ingressClassResource:
         default: true
