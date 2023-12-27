@@ -36,5 +36,7 @@ spec:
       annotations:
         service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: /healthz
       replicaCount: 3
+      ingressClass:
+        setAsDefaultIngress: true
     admissionWebhooks:
       enabled: false
