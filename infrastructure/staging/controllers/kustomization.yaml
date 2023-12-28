@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../base
+  - ../../base
 patches:
   - path: tf-controller.yaml
     target:
@@ -11,7 +11,3 @@ patches:
     target:
       kind: HelmRelease
       name: ingress-nginx
-  - path: cert-manager.yaml
-    target:
-      kind: ClusterIssuer
-      name: letsencrypt

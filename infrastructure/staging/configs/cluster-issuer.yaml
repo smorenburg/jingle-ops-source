@@ -5,4 +5,11 @@ metadata:
   name: letsencrypt
 spec:
   acme:
+    email: robin@robino.io
     server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
