@@ -3,9 +3,11 @@ terraform {
     azurerm = {
       version = ">= 3.84"
     }
+
     random = {
       version = ">= 3.6"
     }
+
     kubernetes = {
       version = ">= 2.24"
     }
@@ -94,7 +96,8 @@ resource "azurerm_cosmosdb_sql_container" "default" {
 # Create the Kubernetes namespace.
 resource "kubernetes_namespace_v1" "default" {
   metadata {
-    name   = var.app
+    name = var.app
+
     labels = {
       app = var.app
     }
@@ -106,7 +109,8 @@ resource "kubernetes_deployment_v1" "default" {
   metadata {
     name      = var.app
     namespace = kubernetes_namespace_v1.default.metadata[0].name
-    labels    = {
+
+    labels = {
       app = var.app
     }
   }
@@ -149,12 +153,12 @@ resource "kubernetes_deployment_v1" "default" {
 
           env {
             name  = "NEXT_PUBLIC_COSMOS_DB_CONTAINER_ID"
-            value = azurerm_cosmosdb_sql_database.default.id
+            value = "persons"
           }
 
           env {
             name  = "NEXT_PUBLIC_COSMOS_DB_DATABASE_ID"
-            value = azurerm_cosmosdb_sql_container.default.id
+            value = "ftc23"
           }
 
           resources {
@@ -187,7 +191,8 @@ resource "kubernetes_service_v1" "default" {
   metadata {
     name      = var.app
     namespace = kubernetes_namespace_v1.default.metadata[0].name
-    labels    = {
+
+    labels = {
       app = var.app
     }
   }
@@ -209,9 +214,11 @@ resource "kubernetes_ingress_v1" "default" {
   metadata {
     name      = var.app
     namespace = kubernetes_namespace_v1.default.metadata[0].name
-    labels    = {
+
+    labels = {
       app = var.app
     }
+
     annotations = {
       "cert-manager.io/cluster-issuer" = "letsencrypt"
     }
