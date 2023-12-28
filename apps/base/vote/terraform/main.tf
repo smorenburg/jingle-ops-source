@@ -3,9 +3,11 @@ terraform {
     azurerm = {
       version = ">= 3.84"
     }
+
     random = {
       version = ">= 3.6"
     }
+
     kubernetes = {
       version = ">= 2.24"
     }
@@ -59,7 +61,8 @@ resource "azurerm_redis_cache" "default" {
 # Create the Kubernetes namespace.
 resource "kubernetes_namespace_v1" "default" {
   metadata {
-    name   = var.app
+    name = var.app
+
     labels = {
       app = var.app
     }
@@ -71,7 +74,8 @@ resource "kubernetes_deployment_v1" "default" {
   metadata {
     name      = var.app
     namespace = kubernetes_namespace_v1.default.metadata[0].name
-    labels    = {
+
+    labels = {
       app = var.app
     }
   }
@@ -142,7 +146,8 @@ resource "kubernetes_service_v1" "default" {
   metadata {
     name      = var.app
     namespace = kubernetes_namespace_v1.default.metadata[0].name
-    labels    = {
+
+    labels = {
       app = var.app
     }
   }
@@ -164,9 +169,11 @@ resource "kubernetes_ingress_v1" "default" {
   metadata {
     name      = var.app
     namespace = kubernetes_namespace_v1.default.metadata[0].name
-    labels    = {
+
+    labels = {
       app = var.app
     }
+
     annotations = {
       "cert-manager.io/cluster-issuer" = "letsencrypt"
     }
