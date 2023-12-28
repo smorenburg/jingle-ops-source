@@ -11,3 +11,7 @@ patches:
     target:
       kind: HelmRelease
       name: ingress-nginx
+  - path: cert-manager.yaml
+    target:
+      kind: ClusterIssuer
+      name: letsencrypt
