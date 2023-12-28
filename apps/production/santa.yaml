@@ -1,0 +1,27 @@
+---
+apiVersion: infra.contrib.fluxcd.io/v1alpha2
+kind: Terraform
+metadata:
+  name: santa
+  namespace: flux-system
+spec:
+  vars:
+    - name: environment
+      value: production
+    - name: image
+      value: crjingle7d687c.azurecr.io/santa:latest
+    - name: ingress_rule_host
+      value: santa.20.123.4.196.nip.io
+  runnerPodTemplate:
+    spec:
+      env:
+        - name: ARM_TENANT_ID
+          value: 7ddc4c97-c5a0-4a29-ac83-59be0f280518
+        - name: ARM_SUBSCRIPTION_ID
+          value: ae9db8ac-2682-4a98-ad36-7d13b2bd5a24
+        - name: ARM_CLIENT_ID
+          value: 6020266e-55e4-47ab-933e-abb02bf086ab
+        - name: ARM_USE_OIDC
+          value: "true"
+        - name: ARM_OIDC_TOKEN_FILE_PATH
+          value: /var/run/secrets/azure/tokens/azure-identity-token
