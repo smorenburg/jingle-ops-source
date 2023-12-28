@@ -167,9 +167,17 @@ resource "kubernetes_ingress_v1" "default" {
     labels    = {
       app = var.app
     }
+    annotations = {
+      cert-manager.io/cluster-issuer = "letsencrypt"
+    }
   }
 
   spec {
+    tls {
+      hosts       = [var.ingress_rule_host]
+      secret_name = "tls-secret"
+    }
+
     rule {
       host = var.ingress_rule_host
 
