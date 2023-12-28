@@ -86,7 +86,7 @@ resource "azurerm_cosmosdb_sql_container" "default" {
   resource_group_name = azurerm_resource_group.default.name
   account_name        = azurerm_cosmosdb_account.default.name
   database_name       = azurerm_cosmosdb_sql_database.default.name
-  partition_key_path  = "/definition/id"
+  partition_key_path  = "/LastName"
 
   autoscale_settings {
     max_throughput = "1000"
