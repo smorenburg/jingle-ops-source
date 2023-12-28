@@ -168,7 +168,7 @@ resource "kubernetes_ingress_v1" "default" {
       app = var.app
     }
     annotations = {
-      cert-manager.io/cluster-issuer = "letsencrypt"
+      "cert-manager.io/cluster-issuer" = "letsencrypt"
     }
   }
 
