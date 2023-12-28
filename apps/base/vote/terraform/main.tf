@@ -98,7 +98,7 @@ resource "kubernetes_deployment_v1" "default" {
 
       spec {
         container {
-          image = var.image
+          image = var.container_image
           name  = var.app
 
           port {

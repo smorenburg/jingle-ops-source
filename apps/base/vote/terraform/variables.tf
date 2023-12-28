@@ -38,7 +38,7 @@ variable "environment_abbreviation" {
   }
 }
 
-variable "image" {
+variable "container_image" {
   description = "Required. The image for the container."
   type        = string
 }
