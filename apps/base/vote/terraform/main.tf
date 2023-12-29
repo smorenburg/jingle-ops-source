@@ -51,7 +51,7 @@ resource "azurerm_redis_cache" "default" {
   name                = "redis-${var.app}-${local.environment_abbreviation}-${random_id.redis.hex}"
   location            = var.location
   resource_group_name = azurerm_resource_group.default.name
-  capacity            = 1
+  capacity            = 0
   family              = "C"
   sku_name            = "Standard"
   enable_non_ssl_port = true
