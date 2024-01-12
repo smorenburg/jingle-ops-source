@@ -9,4 +9,4 @@ spec:
     runner:
       serviceAccount:
         annotations:
-          azure.workload.identity/client-id: 3b633b6d-43bd-4568-b536-e30bb50284fb
+          azure.workload.identity/client-id: 87c5379e-fd4e-4cda-997c-3a9ce66b87fb
